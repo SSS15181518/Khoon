@@ -52,7 +52,7 @@ public class fetchDoners extends AsyncTask<Void,Void,Void>{
                 JSONObject JO = (JSONObject) JA.get(i);
 
                 /*String category = JO.getString("category");
-                if (JO.equals("1")) {
+                if (JO.equals("1")) {;;
                     feedbackJson.add(JO);
                 }*/
 

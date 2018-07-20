@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static int SPLASH_TIME_OUT = 3000;
+    public static int SPLASH_TIME_OUT = 2000;
 
     @RequiresApi(api = 28)
     @Override

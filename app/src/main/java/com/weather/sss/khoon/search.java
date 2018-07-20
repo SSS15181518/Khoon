@@ -5,7 +5,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,7 +45,7 @@ public class search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         search = this;
 
         doners = findViewById(R.id.doners);
@@ -57,7 +60,22 @@ public class search extends AppCompatActivity {
 
 
 
+        search1.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    //do what you want on the press of 'done'
+                    imageButton.performClick();
+                }
+                return false;
+            }
+        });
 
+   /*     imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });*/
 
     }
 
@@ -65,10 +83,9 @@ public class search extends AppCompatActivity {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         search_area = search1.getText().toString();
+
         progressBar.setVisibility(View.VISIBLE);
         loading.setVisibility(View.VISIBLE);
-        search1.setVisibility(View.GONE);
-        imageButton.setVisibility(View.INVISIBLE);
         if (internet_connection()) {
             fetchDoners process = new fetchDoners();
             process.execute();
