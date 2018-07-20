@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border"
+    android:padding="15dp"
+    tools:layout_editor_absoluteY="25dp">
+
+    <TextView
+        android:id="@+id/name_list"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold|italic"
+        android:layout_toStartOf="@+id/email_list"
+        android:text="NAME NOT FOUND"
+        android:textColor="#ffffff"
+        android:textSize="33sp"
+        app:layout_constraintBottom_toTopOf="@+id/bloodgroup_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/phno_list"
+        android:layout_width="151dp"
+        android:layout_height="34dp"
+        android:layout_alignStart="@+id/name_list"
+        android:layout_below="@+id/bloodgroup_list"
+        android:layout_marginBottom="4dp"
+        android:text="9999999999"
+        android:textStyle="bold|italic"
+        android:textColor="#ff0000"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/email_list"
+        app:layout_constraintStart_toStartOf="@+id/bloodgroup_list"
+        app:layout_constraintTop_toBottomOf="@+id/bloodgroup_list" />
+
+    <TextView
+        android:id="@+id/area_list"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:layout_alignStart="@+id/name_list"
+        android:layout_below="@+id/city_list"
+        android:layout_marginBottom="6dp"
+        android:textStyle="bold|italic"
+        android:text="Area/Locality"
+        android:textColor="#03ffe2"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/city_list"
+        app:layout_constraintEnd_toEndOf="@+id/city_list"
+        app:layout_constraintStart_toStartOf="@+id/city_list"
+        app:layout_constraintTop_toBottomOf="@+id/email_list" />
+
+    <TextView
+        android:id="@+id/email_list"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold|italic"
+        android:text="Email"
+        android:textColor="#ff17fb"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/area_list"
+        app:layout_constraintEnd_toEndOf="@+id/area_list"
+        app:layout_constraintStart_toStartOf="@+id/phno_list"
+        app:layout_constraintTop_toBottomOf="@+id/phno_list" />
+
+    <TextView
+        android:id="@+id/city_list"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/phno_list"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginStart="31dp"
+        android:text="City"
+        android:textStyle="bold|italic"
+        android:textColor="#05f5dd"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/state_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_list" />
+
+    <TextView
+        android:id="@+id/state_list"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_alignStart="@+id/name_list"
+        android:layout_below="@+id/phno_list"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginStart="31dp"
+        android:textStyle="bold|italic"
+        android:text="State"
+        android:textColor="#fff700"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/zip_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city_list" />
+
+    <TextView
+        android:id="@+id/bloodgroup_list"
+        android:layout_width="250dp"
+        android:layout_height="34dp"
+        android:layout_alignStart="@+id/name_list"
+        android:layout_below="@+id/name_list"
+        android:layout_marginBottom="3dp"
+        android:text="Blood Group"
+        android:textStyle="bold"
+        android:textColor="#46f900"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/phno_list"
+        app:layout_constraintStart_toStartOf="@+id/name_list"
+        app:layout_constraintTop_toBottomOf="@+id/name_list" />
+
+    <TextView
+        android:id="@+id/zip_list"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginStart="31dp"
+        android:text="Zip"
+        android:textStyle="bold|italic"
+        android:textColor="#e60b13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/state_list" />
+
+
+</android.support.constraint.ConstraintLayout>
