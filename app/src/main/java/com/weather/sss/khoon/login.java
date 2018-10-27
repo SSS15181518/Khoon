@@ -15,15 +15,18 @@ public class login extends AppCompatActivity {
 
     public void donateBlood(View view)
     {
-        Intent intent = new Intent(getApplication(),signup.class);
+        Intent intent = new Intent(getApplication(),aadharverifydonate.class);
         startActivity(intent);
     }
 
     public void searchBlood(View view)
     {
-        Intent intent = new Intent(getApplication(),search.class);
+        Intent intent = new Intent(getApplication(),aadharverify.class);
         startActivity(intent);
     }
-
+    public void enterAadhar(View view){
+        Intent intent = new Intent(getApplication(),enteraadhar.class);
+        startActivity(intent);
+    }
 
 }

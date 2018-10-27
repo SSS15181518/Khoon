@@ -24,6 +24,7 @@ public class search extends AppCompatActivity {
     public  static TextView loading;
     public static search search;
     public static String search_area;
+    TextView textView ;
     ImageButton imageButton;
 
 
@@ -53,7 +54,7 @@ public class search extends AppCompatActivity {
         loading = findViewById(R.id.loading);
         search1 = findViewById(R.id.editText8);
         imageButton = findViewById(R.id.imageButton);
-
+        textView = findViewById(R.id.textView2);
 
         progressBar.setVisibility(View.GONE);
         loading.setVisibility(View.GONE);
@@ -83,7 +84,7 @@ public class search extends AppCompatActivity {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         search_area = search1.getText().toString();
-
+        textView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         loading.setVisibility(View.VISIBLE);
         if (internet_connection()) {

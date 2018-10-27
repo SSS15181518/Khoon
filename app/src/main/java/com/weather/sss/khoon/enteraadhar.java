@@ -8,11 +8,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -29,46 +26,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class signup extends AppCompatActivity {
-
-    EditText name, phno, email, area, city, state, zip;
-    Spinner bloodgroup;
-    ArrayAdapter<CharSequence> adapter;
-
+public class enteraadhar extends AppCompatActivity {
+    EditText aadhar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-        name = findViewById(R.id.name);
-        phno = (EditText)findViewById(R.id.phno);
-        email = (EditText)findViewById(R.id.email);
-         area = (EditText)findViewById(R.id.area);
-         city = (EditText)findViewById(R.id.city);
-         state = (EditText)findViewById(R.id.state);
-         zip = (EditText)findViewById(R.id.zip_list);
-        bloodgroup = findViewById(R.id.bloodgroup);
-
-        adapter = ArrayAdapter.createFromResource(this,R.array.bloodGroup,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bloodgroup.setAdapter(adapter);
-        bloodgroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        setContentView(R.layout.activity_enteraadhar);
+        aadhar = findViewById(R.id.editText3);
     }
-
-
-
-
-
-
-
 
 
     boolean internet_connection() {
@@ -82,36 +47,44 @@ public class signup extends AppCompatActivity {
         return isConnected;
     }
 
-    public void addData(View v){
-        Button b = findViewById(R.id.register);
 
-        String name1 = name.getText().toString();
-        String phno1 = phno.getText().toString();
-        String email1 = email.getText().toString();
-        String area1 = area.getText().toString();
-        String city1 = city.getText().toString();
-        String state1 = state.getText().toString();
-        String zip1 = zip.getText().toString();
-        String bg = bloodgroup.getSelectedItem().toString();
 
-        if(name1.equals("")||phno1.equals("")||area1.equals("")||city1.equals("")||state1.equals("")||email1.equals("")||zip1.equals(""))
-        {
-            Toast.makeText(getApplicationContext(),"Fields can't be Empty",Toast.LENGTH_LONG).show();
-        }
-        else if(bg.equalsIgnoreCase("choose blood group"))
-        {
-            Toast.makeText(getApplicationContext(),"Select Blood Group",Toast.LENGTH_LONG).show();
+
+    public void del(View v){
+
+        String aadhar1 = aadhar.getText().toString();
+
+
+        if(aadhar1.equals("")) {
+            Toast.makeText(getApplicationContext(), "Fields can't be Empty", Toast.LENGTH_LONG).show();
         }
         else
         {
             if (internet_connection()) {
-                new signup.ExecuteTask().execute(name1,phno1,email1,area1,city1,state1,zip1,bg);
-                b.setText("Loading ...");
+                new enteraadhar.ExecuteTask().execute(aadhar1,"0");
             }
             else
             {
-              //  Snackbar.make(v, "No Internet Connection !!", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                Toast.makeText(getApplicationContext(),"Data submitted Successfully.",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"No Internet Connection !!",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+    public void delN(View v){
+
+        String aadhar1 = aadhar.getText().toString();
+
+
+        if(aadhar1.equals("")) {
+            Toast.makeText(getApplicationContext(), "Fields can't be Empty", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            if (internet_connection()) {
+                new enteraadhar.ExecuteTask().execute(aadhar1,"90");
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(),"No Internet Connection !!",Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -131,7 +104,14 @@ public class signup extends AppCompatActivity {
 
             if(result.equals("success"))
             {
-                Toast.makeText(getApplicationContext(),"Data Submitted Successfully !! Now You can Donate whenever You get a call. ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Data deleted Successfully !!",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplication(),login.class);
+                startActivity(intent);
+                finish();
+            }
+            if(result.equals("success90"))
+            {
+                Toast.makeText(getApplicationContext(),"Your Data hidden Successfully for 90 days!!",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplication(),login.class);
                 startActivity(intent);
                 finish();
@@ -142,10 +122,6 @@ public class signup extends AppCompatActivity {
 
             }
 
-
-
-
-
         }}
 
     public String PostData(String[] value)
@@ -154,16 +130,10 @@ public class signup extends AppCompatActivity {
         try
         {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("https://sss-test.000webhostapp.com/khoon/addemp.php");
+            HttpPost httpPost = new HttpPost("https://sss-test.000webhostapp.com/khoon/delete.php");
             List<NameValuePair> list = new ArrayList<NameValuePair>();
-            list.add(new BasicNameValuePair("name", value[0]));
-            list.add(new BasicNameValuePair("phno", value[1]));
-            list.add(new BasicNameValuePair("email", value[2]));
-            list.add(new BasicNameValuePair("area", value[3]));
-            list.add(new BasicNameValuePair("city", value[4]));
-            list.add(new BasicNameValuePair("state", value[5]));
-            list.add(new BasicNameValuePair("zip", value[6]));
-            list.add(new BasicNameValuePair("bg", value[7]));
+            list.add(new BasicNameValuePair("aadhar", value[0]));
+            list.add(new BasicNameValuePair("del", value[1]));
             //end new data
             httpPost.setEntity(new UrlEncodedFormEntity(list));
             HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -200,7 +170,4 @@ public class signup extends AppCompatActivity {
     }
 
 
-
-
-    }
-
+}
