@@ -33,6 +33,7 @@ public class signup extends AppCompatActivity {
 
     EditText name, phno, email, area, city, state, zip;
     Spinner bloodgroup;
+    String aadhar;
     ArrayAdapter<CharSequence> adapter;
 
     @Override
@@ -61,6 +62,9 @@ public class signup extends AppCompatActivity {
 
             }
         });
+
+        Intent intent = getIntent();
+        aadhar = intent.getExtras().getString("aadhar");
     }
 
 
@@ -105,7 +109,7 @@ public class signup extends AppCompatActivity {
         else
         {
             if (internet_connection()) {
-                new signup.ExecuteTask().execute(name1,phno1,email1,area1,city1,state1,zip1,bg);
+                new signup.ExecuteTask().execute(name1,phno1,email1,area1,city1,state1,zip1,bg,aadhar);
                 b.setText("Loading ...");
             }
             else
@@ -164,6 +168,7 @@ public class signup extends AppCompatActivity {
             list.add(new BasicNameValuePair("state", value[5]));
             list.add(new BasicNameValuePair("zip", value[6]));
             list.add(new BasicNameValuePair("bg", value[7]));
+            list.add(new BasicNameValuePair("aadhar", value[8]));
             //end new data
             httpPost.setEntity(new UrlEncodedFormEntity(list));
             HttpResponse httpResponse = httpClient.execute(httpPost);
